@@ -1,4 +1,4 @@
-<tool id="rpbasicdesign" name="DNA-BOT input files from rpSBML" version="0.2.0">
+<tool id="rpbasicdesign" name="DNA-BOT input files from rpSBML" version="0.2.1">
   <description>Build DNA-BOT input files from rpSBML</description>
   <requirements>
     <requirement type="package" version="0.2.2">rpbasicdesign</requirement>
@@ -45,6 +45,21 @@
       <discover_datasets pattern="__designation__" format="xml" directory="out/sbol_export" />
     </collection>
   </outputs>
+  <tests>
+    <test>
+    <!-- test 1: check if identical outputs are produced with default parameters  --> 
+      <param name="rpsbml_file" value="rpbasic/muconate_example.xml" />
+      <output_collection name="dnabot_dir" type="list">
+        <element name="Constructs" file="rpbasic/out/dnabot_in/constructs.csv" ftype="csv" />
+        <element name="User parts coords" file="rpbasic/out/dnabot_in/user_parts_coords.csv" ftype="csv" />
+      </output_collection>
+      <output_collection name="sbol_dir" type="list">
+        <element name="BASIC_construct_A1.xml" file="rpbasic/out/sbol_export/BASIC_construct_A1.xml" />
+        <element name="BASIC_construct_A2.xml" file="rpbasic/out/sbol_export/BASIC_construct_A2.xml" />
+        <element name="BASIC_construct_A3.xml" file="rpbasic/out/sbol_export/BASIC_construct_A3.xml" />
+      </output_collection>
+    </test>
+  </tests>
   <help><![CDATA[
         usage: python -m dnaprep.cli [-h] --rpsbml_file RPSBML_FILE
 
