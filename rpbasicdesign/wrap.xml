@@ -37,10 +37,8 @@
     </section>
   </inputs>
   <outputs>
-    <collection type="list" name="dnabot_dir" label="Dataset for DNA-BOT">
-      <data name="Constructs" format="csv" from_work_dir="out/dnabot_in/constructs.csv" />
-      <data name="User parts coords" format="csv" from_work_dir="out/dnabot_in/user_parts_coords.csv" />
-    </collection>
+    <data name="constructs" format="csv" from_work_dir="out/dnabot_in/constructs.csv" label="constructs.csv"/>
+    <data name="user_parts_coords" format="csv" from_work_dir="out/dnabot_in/user_parts_coords.csv" label="user_parts_coords.csv" />
     <collection type="list" label="SBOL constructs" name="sbol_dir">
       <discover_datasets pattern="__designation__" format="xml" directory="out/sbol_export" />
     </collection>
@@ -49,10 +47,8 @@
     <test>
     <!-- test 1: check if identical outputs are produced with default parameters  --> 
       <param name="rpsbml_file" value="rpbasic/muconate_example.xml" />
-      <output_collection name="dnabot_dir" type="list">
-        <element name="Constructs" file="rpbasic/out/dnabot_in/constructs.csv" ftype="csv" />
-        <element name="User parts coords" file="rpbasic/out/dnabot_in/user_parts_coords.csv" ftype="csv" />
-      </output_collection>
+      <output name="constructs" file="rpbasic/out/dnabot_in/constructs.csv" ftype="csv" compare="diff"/>
+      <output name="user_parts_coords" file="rpbasic/out/dnabot_in/user_parts_coords.csv" ftype="csv" compare="diff"/>
       <output_collection name="sbol_dir" type="list">
         <element name="BASIC_construct_A1.xml" file="rpbasic/out/sbol_export/BASIC_construct_A1.xml" />
         <element name="BASIC_construct_A2.xml" file="rpbasic/out/sbol_export/BASIC_construct_A2.xml" />
